@@ -1,3 +1,5 @@
+// @ts-ignore
+import 'material-symbols/outlined.css';
 import type { Preview } from '@storybook/react-vite'
 
 const preview: Preview = {
