@@ -1,7 +1,8 @@
 import { Text } from 'tamagui'
+import type { IconName } from './types'
 
-type IconProps = {
-    name: string
+export type IconProps = {
+    name: IconName
     size?: number
     color?: string
 }
@@ -14,11 +15,16 @@ const Icon = ({
     return (
         <Text
             aria-hidden
+            userSelect="none"
+            color={color}
+            fontSize={size}
+            lineHeight={size}
             style={{
                 fontFamily: 'Material Symbols Outlined',
-                fontSize: size,
-                color,
-                lineHeight: size,
+                fontWeight: 'normal',
+                fontStyle: 'normal',
+                fontFeatureSettings: "'liga'",
+                textTransform: 'none',
             }}
         >
             {name}
