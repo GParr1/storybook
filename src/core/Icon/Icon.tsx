@@ -1,4 +1,4 @@
-import React from 'react'
+import { Text } from 'tamagui'
 
 type IconProps = {
     name: string
@@ -6,21 +6,23 @@ type IconProps = {
     color?: string
 }
 
-const Icon: React.FC<IconProps> = ({
-                                       name,
-                                       size = 24,
-                                       color = 'black',
-                                   }) => {
+const Icon = ({
+                  name,
+                  size = 24,
+                  color = '$color',
+              }: IconProps) => {
     return (
-        <span
-            className="material-symbols-outlined"
+        <Text
+            aria-hidden
             style={{
+                fontFamily: 'Material Symbols Outlined',
                 fontSize: size,
                 color,
+                lineHeight: size,
             }}
         >
-      {name}
-    </span>
+            {name}
+        </Text>
     )
 }
 

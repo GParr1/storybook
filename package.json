@@ -12,10 +12,12 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@tamagui/config": "^2.7.4",
     "material-symbols": "^0.45.10",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "react-native": "^0.86.2"
+    "react-native": "^0.86.2",
+    "tamagui": "^2.7.4"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "latest",
@@ -25,6 +27,7 @@
     "@storybook/addon-mcp": "latest",
     "@storybook/addon-vitest": "^10.5.7",
     "@storybook/react-vite": "^10.5.7",
+    "@tamagui/vite-plugin": "^2.7.4",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
