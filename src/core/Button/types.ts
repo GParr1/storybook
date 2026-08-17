@@ -1,12 +1,12 @@
-import type { ComponentProps } from 'react'
-import type { Button as TamaguiButton } from 'tamagui'
-
-import type { IconName } from '../Icon'
+import type { ButtonProps as TamaguiButtonProps } from 'tamagui'
 import type { ButtonVariant } from './variants'
 
-export type ButtonProps = {
+export type ButtonProps = Omit<
+    TamaguiButtonProps,
+    'variant'
+> & {
     label: string
     variant?: ButtonVariant
-    icon?: IconName
+    icon?: string
     iconPosition?: 'left' | 'right'
-} & ComponentProps<typeof TamaguiButton>
+}

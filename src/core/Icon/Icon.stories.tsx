@@ -111,6 +111,7 @@ const icons: IconName[] = [
     'report',
 
     // Security
+    // Security
     'lock',
     'lock_open',
     'key',
@@ -119,6 +120,7 @@ const icons: IconName[] = [
     'visibility_off',
     'fingerprint',
     'password',
+    'login',
 
     // Devices
     'phone_android',

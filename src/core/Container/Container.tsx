@@ -1,3 +1,18 @@
-import { YStack } from 'tamagui'
+import { XStack, YStack } from 'tamagui'
 
-export const Container = YStack
+import {type ContainerProps, DEFAULT_CONTAINER_PROPS} from './types'
+
+export const Container = ({
+                              orientation = 'column',
+                              ...props
+                          }: ContainerProps) => {
+
+    const Stack = orientation === 'row'
+        ? XStack
+        : YStack
+
+    return <Stack
+        {...DEFAULT_CONTAINER_PROPS}
+        {...props}
+    />
+}

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+
 import { Container } from './Container'
 import { Text } from '../Text'
 
@@ -11,12 +12,10 @@ const meta = {
     },
 
     argTypes: {
-        padding: {
-            control: 'text',
-        },
-
-        backgroundColor: {
-            control: 'text',
+        orientation: {
+            control: 'radio',
+            options: ['column', 'row'],
+            description: 'Controls the layout direction of the container',
         },
 
         width: {
@@ -27,14 +26,28 @@ const meta = {
             control: 'text',
         },
 
-        flexDirection: {
-            control: 'select',
-            options: [
-                'row',
-                'column',
-                'row-reverse',
-                'column-reverse',
-            ],
+        padding: {
+            control: 'text',
+        },
+
+        gap: {
+            control: 'text',
+        },
+
+        backgroundColor: {
+            control: 'text',
+        },
+
+        borderWidth: {
+            control: 'number',
+        },
+
+        borderColor: {
+            control: 'text',
+        },
+
+        borderRadius: {
+            control: 'text',
         },
 
         alignItems: {
@@ -64,12 +77,8 @@ const meta = {
 export default meta
 
 type Story = StoryObj<typeof meta>
-export const Default: Story = {
-    args: {
-        padding: '$4',
-        backgroundColor: '$secondaryBg',
-    },
 
+export const Default: Story = {
     render: (args) => (
         <Container {...args}>
             <Text>
@@ -80,13 +89,15 @@ export const Default: Story = {
 }
 
 export const Row: Story = {
-    render: () => (
-        <Container
-            flexDirection="row"
-            gap="$3"
-            padding="$4"
-            backgroundColor="$secondaryBg"
-        >
+    args: {
+        orientation: 'row',
+        gap: '$3',
+        padding: '$4',
+        backgroundColor: '$secondaryBg',
+    },
+
+    render: (args) => (
+        <Container {...args}>
             <Container
                 width={80}
                 height={80}
@@ -107,56 +118,67 @@ export const Row: Story = {
         </Container>
     ),
 }
+
 export const Center: Story = {
-    render: () => (
-        <Container
-            width={400}
-            height={250}
-            alignItems="center"
-            justifyContent="center"
-            backgroundColor="$secondaryBg"
-        >
+    args: {
+        width: 400,
+        height: 250,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '$secondaryBg',
+    },
+
+    render: (args) => (
+        <Container {...args}>
             <Text variant="title">
                 Centered content
             </Text>
         </Container>
     ),
 }
+
 export const Responsive: Story = {
-    render: () => (
-        <Container
-            width="100%"
-            padding="$3"
-            backgroundColor="$secondaryBg"
+    args: {
+        width: '100%',
+        padding: '$3',
+        backgroundColor: '$secondaryBg',
 
-            $sm={{
-                padding: '$4',
-            }}
+        $sm: {
+            padding: '$4',
+        },
 
-            $md={{
-                padding: '$6',
-            }}
-        >
+        $md: {
+            padding: '$6',
+        },
+    },
+
+    render: (args) => (
+        <Container {...args}>
             <Text>
                 Responsive Container
             </Text>
         </Container>
     ),
 }
+
 export const Interactive: Story = {
-    render: () => (
+    args: {
+        padding: '$4',
+        borderRadius: '$4',
+        backgroundColor: '$background',
+        borderWidth: 1,
+        borderColor: '$primaryText',
+        pressStyle: {
+            backgroundColor: '$backgroundPress',
+        },
+        hoverStyle: {
+            backgroundColor: '$backgroundHover',
+        },
+    },
+
+    render: (args) => (
         <Container
-            padding="$4"
-            borderRadius="$4"
-            backgroundColor="$background"
-            borderWidth={1}
-            borderColor="$primaryText"
-            pressStyle={{
-                backgroundColor: '$backgroundPress',
-            }}
-            hoverStyle={{
-                backgroundColor: '$backgroundHover',
-            }}
+            {...args}
             onPress={() => {
                 console.log('Container pressed')
             }}

@@ -1,8 +1,6 @@
 import React from 'react'
 import {
-    Button as TamaguiButton,
-    XStack,
-} from 'tamagui'
+    Button as TamaguiButton} from 'tamagui'
 
 import Icon from '../Icon'
 import type { ButtonProps } from './types'
@@ -10,6 +8,8 @@ import {
     buttonStyles,
     type ButtonVariant,
 } from './variants'
+import {Container} from "../Container";
+import {Text} from "../Text";
 
 const Button: React.FC<ButtonProps> = ({
                                            label,
@@ -74,7 +74,10 @@ const Button: React.FC<ButtonProps> = ({
             aria-disabled={disabled}
             role="button"
         >
-            <XStack
+            <Container
+                orientation={'row'}
+                borderColor={'none'}
+                backgroundColor={'none'}
                 alignItems="center"
                 justifyContent="center"
                 gap="$2"
@@ -87,7 +90,7 @@ const Button: React.FC<ButtonProps> = ({
                     />
                 )}
 
-                <TamaguiButton.Text
+                <Text
                     color={disabled ? '$disabledColor' : textColor}
                     textTransform={
                         isNone
@@ -97,7 +100,7 @@ const Button: React.FC<ButtonProps> = ({
                     fontWeight="700"
                 >
                     {label}
-                </TamaguiButton.Text>
+                </Text>
 
                 {icon && iconPosition === 'right' && (
                     <Icon
@@ -106,7 +109,7 @@ const Button: React.FC<ButtonProps> = ({
                         color={textColor}
                     />
                 )}
-            </XStack>
+            </Container>
         </TamaguiButton>
     )
 }
