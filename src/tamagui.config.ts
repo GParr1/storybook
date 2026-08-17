@@ -60,6 +60,7 @@ const tamaguiConfig = createTamagui({
 
       buttonDisabledBackground: 'rgb(150, 150, 150)',
       buttonDisabledText: 'rgb(100, 100, 100)',
+      errorColor: 'rgb(190, 30, 45)',
     },
 
     dark: {
@@ -115,6 +116,7 @@ const tamaguiConfig = createTamagui({
 
       buttonDisabledBackground: 'rgb(90, 90, 90)',
       buttonDisabledText: 'rgb(180, 180, 180)',
+      errorColor: 'rgb(255, 90, 100)',
     },
   },
 })

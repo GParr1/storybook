@@ -1,11 +1,6 @@
 import { Text } from 'tamagui'
-import type { IconName } from './types'
+import type {IconProps} from "./types.ts";
 
-export type IconProps = {
-    name: IconName
-    size?: number
-    color?: string
-}
 
 const Icon = ({
                   name,
