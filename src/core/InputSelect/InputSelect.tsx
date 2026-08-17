@@ -6,7 +6,6 @@ import {
     Paragraph,
     Select,
     Sheet,
-    YStack,
 } from 'tamagui'
 
 import {
@@ -15,39 +14,83 @@ import {
     ChevronUp,
 } from '@tamagui/lucide-icons'
 
-import type { InputSelectProps } from './types'
+import { Container } from '../Container'
+import {
+    useFormContext,
+} from '../../organinsm/Form/FormContext'
 
-const InputSelect: React.FC<InputSelectProps> = ({
-                                                     label,
-                                                     options,
-                                                     error,
-                                                     helperText,
-                                                     id,
-                                                     disabled = false,
-                                                     placeholder = 'Select...',
-                                                     ...props
-                                                 }) => {
-    const selectId =
-        id ??
-        (label
-            ? `select-${label
-                .toLowerCase()
-                .replace(/\s+/g, '-')}`
+import type {
+    InputSelectProps,
+} from './types'
+
+const InputSelect: React.FC<
+    InputSelectProps
+> = ({
+    label,
+    options,
+    error,
+    helperText,
+    id,
+    name,
+    disabled = false,
+    placeholder = 'Select...',
+    onValueChange,
+    ...props
+}) => {
+    const form = useFormContext()
+
+    /*
+     * An explicit error passed to the component
+     * has priority over the FormContext error.
+     */
+    const fieldError =
+        error ??
+        (name
+            ? form?.errors[name]
             : undefined)
 
-    const errorMessageId = error
-        ? `${selectId}-error`
-        : undefined
+    const selectId =
+        id ??
+        (
+            label
+                ? `select-${label
+    .toLowerCase()
+    .replace(/\s+/g, '-')}`
+                : undefined
+        )
 
-    const helperMessageId = helperText
-        ? `${selectId}-helper`
-        : undefined
+    const errorMessageId =
+        fieldError
+            ? `${selectId}-error`
+            : undefined
+
+    const helperMessageId =
+        helperText
+            ? `${selectId}-helper`
+            : undefined
+
+    const handleValueChange = (
+        value: string,
+    ) => {
+        if (name) {
+            form?.setValue(
+                name,
+                value,
+            )
+        }
+
+        onValueChange?.(value)
+    }
 
     return (
-        <YStack
+        <Container
             width="100%"
             gap="$2"
-            opacity={disabled ? 0.6 : 1}
+            opacity={
+                disabled
+                    ? 0.6
+                    : 1
+            }
         >
             {label && (
                 <Label
@@ -62,6 +105,9 @@ const InputSelect: React.FC<InputSelectProps> = ({
             <Select
                 {...props}
                 id={selectId}
+                onValueChange={
+                    handleValueChange
+                }
             >
                 <Select.Trigger
                     width="100%"
@@ -69,7 +115,7 @@ const InputSelect: React.FC<InputSelectProps> = ({
                     paddingHorizontal="$3"
                     borderWidth={1}
                     borderColor={
-                        error
+                        fieldError
                             ? '$errorColor'
                             : '$secondaryColor'
                     }
@@ -80,25 +126,38 @@ const InputSelect: React.FC<InputSelectProps> = ({
                         opacity: 0.6,
                     }}
                     hoverStyle={{
-                        borderColor: '$primaryColor',
+                        borderColor:
+                            '$primaryColor',
                     }}
                     focusStyle={{
-                        borderColor: '$primaryColor',
+                        borderColor:
+                            fieldError
+                                ? '$errorColor'
+                                : '$primaryColor',
                         borderWidth: 2,
                     }}
-                    iconAfter={ChevronDown}
+                    iconAfter={
+                        ChevronDown
+                    }
                     accessibilityRole="combobox"
                     accessibilityLabel={label}
                     accessibilityState={{
                         disabled,
                     }}
-                    aria-invalid={error ? true : undefined}
+                    aria-invalid={
+                        fieldError
+                            ? true
+                            : undefined
+                    }
                     aria-describedby={
-                        errorMessageId ?? helperMessageId
+                        errorMessageId ??
+                        helperMessageId
                     }
                 >
                     <Select.Value
-                        placeholder={placeholder}
+                        placeholder={
+                            placeholder
+                        }
                     />
                 </Select.Trigger>
 
@@ -125,23 +184,40 @@ const InputSelect: React.FC<InputSelectProps> = ({
                         <ChevronUp />
                     </Select.ScrollUpButton>
 
-                    <Select.Viewport minWidth={200}>
+                    <Select.Viewport
+                        minWidth={200}
+                    >
                         <Select.Group>
-                            {options.map((option, index) => (
-                                <Select.Item
-                                    key={option.value}
-                                    value={option.value}
-                                    index={index}
-                                >
-                                    <Select.ItemText>
-                                        {option.label}
-                                    </Select.ItemText>
+                            {options.map(
+                                (
+                                    option,
+                                    index,
+                                ) => (
+                                    <Select.Item
+                                        key={
+                                            option.value
+                                        }
+                                        value={
+                                            option.value
+                                        }
+                                        index={
+                                            index
+                                        }
+                                    >
+                                        <Select.ItemText>
+                                            {
+                                                option.label
+                                            }
+                                        </Select.ItemText>
 
-                                    <Select.ItemIndicator marginLeft="auto">
-                                        <Check />
-                                    </Select.ItemIndicator>
-                                </Select.Item>
-                            ))}
+                                        <Select.ItemIndicator
+                                            marginLeft="auto"
+                                        >
+                                            <Check />
+                                        </Select.ItemIndicator>
+                                    </Select.Item>
+                                ),
+                            )}
                         </Select.Group>
                     </Select.Viewport>
 
@@ -151,24 +227,28 @@ const InputSelect: React.FC<InputSelectProps> = ({
                 </Select.Content>
             </Select>
 
-            {error ? (
+            {fieldError ? (
                 <Paragraph
-                    id={errorMessageId}
+                    id={
+                        errorMessageId
+                    }
                     size="$2"
                     color="$errorColor"
                 >
-                    {error}
+                    {fieldError}
                 </Paragraph>
             ) : helperText ? (
                 <Paragraph
-                    id={helperMessageId}
+                    id={
+                        helperMessageId
+                    }
                     size="$2"
                     color="$secondaryColor"
                 >
                     {helperText}
                 </Paragraph>
             ) : null}
-        </YStack>
+        </Container>
     )
 }
 

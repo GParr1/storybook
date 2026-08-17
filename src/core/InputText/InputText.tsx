@@ -1,36 +1,95 @@
+
 import React from 'react'
+
 import {
     Button,
     Input,
     Label,
     Paragraph,
-    XStack,
-    YStack,
 } from 'tamagui'
 
 import Icon from '../Icon'
-import type { InputTextProps } from './types'
+import { Container } from '../Container'
+
+import {
+    useFormContext,
+} from '../../organinsm/Form/FormContext'
+
+import type {
+    InputTextProps,
+} from './types'
 
 const InputText: React.FC<InputTextProps> = ({
-                                                 label,
-                                                 error,
-                                                 helperText,
-                                                 id,
-                                                 password = false,
-                                                 ...props
-                                             }) => {
-    const [showPassword, setShowPassword] = React.useState(false)
+    label,
+    error,
+    helperText,
+    id,
+    name,
+    password = false,
+    onChangeText,
+    ...props
+}) => {
+    const [showPassword, setShowPassword] =
+        React.useState(false)
+
+    const form = useFormContext()
+
+    /*
+     * An explicit error passed to the component
+     * has priority over the error coming from
+     * the FormContext.
+     */
+    const fieldError =
+        error ??
+        (name
+            ? form?.errors[name]
+            : undefined)
 
     const inputId =
         id ??
-        (label
-            ? `input-${label.toLowerCase().replace(/\s+/g, '-')}`
-            : undefined)
+        (
+            label
+                ? `input-${label
+    .toLowerCase()
+    .replace(/\s+/g, '-')}`
+                : undefined
+        )
 
-    const isPassword = password && !showPassword
+    const errorMessageId =
+        fieldError
+            ? `${inputId}-error`
+            : undefined
+
+    const helperMessageId =
+        helperText
+            ? `${inputId}-helper`
+            : undefined
+
+    const isPassword =
+        password && !showPassword
+
+    const handleChange = (
+        value: string,
+    ) => {
+        /*
+         * Update FormContext.
+         */
+        if (name) {
+            form?.setValue(
+                name,
+                value,
+            )
+        }
+
+        /*
+         * Preserve the component
+         * onChangeText callback.
+         */
+        onChangeText?.(value)
+    }
 
     return (
-        <YStack
+        <Container
             width="100%"
             gap="$2"
         >
@@ -44,7 +103,8 @@ const InputText: React.FC<InputTextProps> = ({
                 </Label>
             )}
 
-            <XStack
+            <Container
+                orientation="row"
                 width="100%"
                 position="relative"
                 alignItems="center"
@@ -52,14 +112,22 @@ const InputText: React.FC<InputTextProps> = ({
                 <Input
                     {...props}
                     id={inputId}
-                    type={isPassword ? 'password' : 'text'}
+                    type={
+                        isPassword
+                            ? 'password'
+                            : 'text'
+                    }
                     width="100%"
                     minHeight={44}
                     paddingHorizontal="$3"
-                    paddingRight={password ? '$10' : '$3'}
+                    paddingRight={
+                        password
+                            ? '$10'
+                            : '$3'
+                    }
                     borderWidth={1}
                     borderColor={
-                        error
+                        fieldError
                             ? '$errorColor'
                             : '$secondaryColor'
                     }
@@ -67,12 +135,26 @@ const InputText: React.FC<InputTextProps> = ({
                     color="$color"
                     borderRadius="$3"
                     focusStyle={{
-                        borderColor: '$primaryColor',
+                        borderColor:
+                            '$primaryColor',
                         borderWidth: 2,
                     }}
                     hoverStyle={{
-                        borderColor: '$primaryColor',
+                        borderColor:
+                            '$primaryColor',
                     }}
+                    aria-invalid={
+                        fieldError
+                            ? true
+                            : undefined
+                    }
+                    aria-describedby={
+                        errorMessageId ??
+                        helperMessageId
+                    }
+                    onChangeText={
+                        handleChange
+                    }
                 />
 
                 {password && (
@@ -91,7 +173,10 @@ const InputText: React.FC<InputTextProps> = ({
                                 : 'Show password'
                         }
                         onPress={() => {
-                            setShowPassword((previous) => !previous)
+                            setShowPassword(
+                                (previous) =>
+                                    !previous,
+                            )
                         }}
                         hoverStyle={{
                             opacity: 0.7,
@@ -110,24 +195,26 @@ const InputText: React.FC<InputTextProps> = ({
                         />
                     </Button>
                 )}
-            </XStack>
+            </Container>
 
-            {error ? (
+            {fieldError ? (
                 <Paragraph
+                    id={errorMessageId}
                     size="$2"
                     color="$errorColor"
                 >
-                    {error}
+                    {fieldError}
                 </Paragraph>
             ) : helperText ? (
                 <Paragraph
+                    id={helperMessageId}
                     size="$2"
                     color="$secondaryColor"
                 >
                     {helperText}
                 </Paragraph>
             ) : null}
-        </YStack>
+        </Container>
     )
 }
 

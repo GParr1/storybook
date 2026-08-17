@@ -1,15 +1,17 @@
 import type { SelectProps } from 'tamagui'
 
-export interface SelectOption {
+export interface InputSelectOption {
     label: string
     value: string
 }
 
-export interface InputSelectProps extends SelectProps {
+export interface InputSelectProps
+    extends SelectProps {
     label?: string
-    options: SelectOption[]
+    name?: string
+    disabled?: boolean
+    options: InputSelectOption[]
     error?: string
     helperText?: string
-    disabled?: boolean
     placeholder?: string
 }
