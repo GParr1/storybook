@@ -1,11 +1,11 @@
 import React from 'react'
 import {
-    Image,
     useMedia,
 } from 'tamagui'
 
 import { Text } from '../../core/Text'
 import Button from '../../core/Button'
+import {Image} from '../../core/Image'
 import { Container } from '../../core/Container'
 import NavLink from '../../core/NavLink'
 import { Assets } from '../../assets/assets'
@@ -47,13 +47,13 @@ const Header = ({
                     aria-label="MiniLiga"
                 />
 
-                <Text variant="title">
+                {title && <Text variant="title">
                     {title}
-                </Text>
+                </Text>}
             </Container>
 
             {/* Desktop navigation */}
-            {!isMobile && (
+            {!isMobile && navItems && (
                 <Container
                     orientation="row"
                     alignItems="center"
@@ -127,6 +127,7 @@ const Header = ({
                     ))}
                     <Container
                         orientation="row"
+                        justifyContent="center"
                         alignItems="center"
                         gap="$2"
                     >
