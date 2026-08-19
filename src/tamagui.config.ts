@@ -60,7 +60,7 @@ const tamaguiConfig = createTamagui({
 
       buttonDisabledBackground: 'rgb(150, 150, 150)',
       buttonDisabledText: 'rgb(100, 100, 100)',
-      errorColor: 'rgb(190, 30, 45)',
+      errorColor: 'rgb(190, 30, 45)'
     },
 
     dark: {
@@ -116,9 +116,9 @@ const tamaguiConfig = createTamagui({
 
       buttonDisabledBackground: 'rgb(90, 90, 90)',
       buttonDisabledText: 'rgb(180, 180, 180)',
-      errorColor: 'rgb(255, 90, 100)',
-    },
-  },
+      errorColor: 'rgb(255, 90, 100)'
+    }
+  }
 })
 
 export default tamaguiConfig
@@ -126,5 +126,6 @@ export default tamaguiConfig
 export type Conf = typeof tamaguiConfig
 
 declare module 'tamagui' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface TamaguiCustomConfig extends Conf {}
 }

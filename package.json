@@ -1,23 +1,42 @@
 {
-  "name": "storybook",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@gparr1/design-system",
+  "version": "1.0.0",
+  "private": false,
   "type": "module",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prettier": "prettier --config .prettierrc.json -c \"{src,test}/**/*.{js,ts,tsx}\"",
+    "prettier:fix": "npm run prettier -- --write"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19",
+    "react-native": ">=0.81",
+    "react-native-web": "^0.21.2",
+    "tamagui": ">=2"
   },
   "dependencies": {
     "@tamagui/config": "^2.7.4",
     "@tamagui/lucide-icons": "^1.144.4",
     "material-symbols": "^0.45.10",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "tamagui": "^2.7.4"
+    "prettier": "^3.9.6"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "latest",

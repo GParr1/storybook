@@ -1,7 +1,11 @@
-export type IconName = string
+import type { ICONS } from './icons'
 
-export type IconProps = {
+export type IconName = keyof typeof ICONS
+
+export interface IconProps {
   name: IconName
   size?: number
   color?: string
+  strokeWidth?: number
+  accessibilityLabel?: string
 }

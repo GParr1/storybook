@@ -1,5 +1,5 @@
 export interface NavLinkProps {
-    label: string
-    onPress?: () => void
-    disabled?: boolean
+  label: string
+  onPress?: () => void
+  disabled?: boolean
 }

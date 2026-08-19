@@ -1,24 +1,17 @@
-import React from 'react'
-import { Button, Text, YStack, useThemeSetting } from 'tamagui'
+import { Button, Text, YStack } from 'tamagui'
+
+import useThemeSetting from './ThemeContext'
 
 const ThemeSwitcher = () => {
-    const { current, set } = useThemeSetting()
+  const { theme, toggleTheme } = useThemeSetting()
 
-    const toggleTheme = () => {
-        set(current === 'light' ? 'dark' : 'light')
-    }
+  return (
+    <YStack gap="$3" alignItems="center">
+      <Text>Tema: {theme}</Text>
 
-    return (
-        <YStack gap="$3" alignItems="center">
-            <Text>
-                Tema: {current}
-            </Text>
-
-            <Button onPress={toggleTheme}>
-                Cambia tema
-            </Button>
-        </YStack>
-    )
+      <Button onPress={toggleTheme}>Cambia tema</Button>
+    </YStack>
+  )
 }
 
 export default ThemeSwitcher
