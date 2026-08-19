@@ -5,4 +5,5 @@ export type AccordionProps = {
   children: ReactNode
   defaultOpen?: boolean
   disabled?: boolean
+  width?: string
 }

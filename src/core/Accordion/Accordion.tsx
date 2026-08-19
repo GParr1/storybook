@@ -1,14 +1,16 @@
 import React from 'react'
-import { Paragraph, Separator } from 'tamagui'
+import { Separator } from 'tamagui'
 
 import { Icon } from '../Icon'
 import type { AccordionProps } from './types'
-import { Container } from '../Container'
+import { Container, type ContainerProps } from '../Container'
 import { Button } from '../Button'
+import { Text } from '../Text'
 
 const Accordion: React.FC<AccordionProps> = ({
   title,
   children,
+  width,
   defaultOpen = false,
   disabled = false
 }) => {
@@ -22,47 +24,33 @@ const Accordion: React.FC<AccordionProps> = ({
     setOpen((prev) => !prev)
   }
 
+  const containerConfig = {
+    orientation: 'row',
+    backgroundColor: 'none',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: '$2'
+  } as ContainerProps
   return (
-    <Container width="100%">
+    <Container width={width}>
       <Button
         unstyled
+        width={width}
+        label={title}
+        variant={'secondary'}
         disabled={disabled}
         onPress={toggle}
-        padding="$3"
-        borderRadius="$4"
-        width="100%"
-        backgroundColor="$background"
-        hoverStyle={{
-          backgroundColor: '$backgroundHover'
-        }}
-        pressStyle={{
-          backgroundColor: '$backgroundPress'
-        }}
-        focusStyle={{
-          outlineWidth: 2,
-          outlineColor: '$primaryColor',
-          outlineStyle: 'solid'
-        }}
-        cursor={disabled ? 'not-allowed' : 'pointer'}
-        opacity={disabled ? 0.5 : 1}
         aria-expanded={open}
-        aria-disabled={disabled}
       >
-        <Container
-          orientation={'row'}
-          width="100%"
-          alignItems="center"
-          justifyContent="space-between"
-          gap="$2"
-        >
-          <Paragraph
+        <Container {...containerConfig}>
+          <Text
             flex={1}
+            children={title}
+            borderColor={'none'}
             fontWeight="600"
             color="$primaryText"
             textAlign="left"
-          >
-            {title}
-          </Paragraph>
+          />
 
           <Icon
             name={open ? 'expand_less' : 'expand_more'}

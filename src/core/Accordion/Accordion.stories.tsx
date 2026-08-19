@@ -13,6 +13,9 @@ const meta = {
     title: {
       control: 'text'
     },
+    width: {
+      control: 'text'
+    },
     defaultOpen: {
       control: 'boolean'
     },
@@ -29,6 +32,7 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     title: 'What is Storybook?',
+    width: 'fullScreen',
     defaultOpen: false,
     children: (
       <Paragraph>

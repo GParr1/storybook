@@ -1,96 +1,57 @@
 import React from 'react'
 import { Button as TamaguiButton } from 'tamagui'
 
-import { Icon, type IconProps } from '../Icon'
+import { Icon } from '../Icon'
 import type { ButtonProps } from './types'
 import { buttonStyles, type ButtonVariant } from './variants'
-import { Container } from '../Container'
+import { Container, type ContainerProps } from '../Container'
 import { Text } from '../Text'
 
 const Button: React.FC<ButtonProps> = ({
+  children,
   label,
   variant = 'primary',
   iconProps,
   iconPosition = 'left',
   disabled = false,
+  textTransform,
   ...props
 }: ButtonProps) => {
   const styles = buttonStyles[variant as ButtonVariant]
+  const stylesDisabled = disabled
+    ? {
+        disabled: disabled,
+        'aria-disabled': disabled,
+        opacity: 0.5,
+        cursor: 'not-allowed',
+        hoverStyle: undefined,
+        pressStyle: undefined
+      }
+    : {}
 
-  const isPrimary = variant === 'primary' || variant === 'submit'
+  const containerConfig = {
+    orientation: 'row',
+    backgroundColor: 'none',
+    alignItems: 'center'
+  } as ContainerProps
 
-  const isTag = variant === 'tag'
-  const isNone = variant === 'none'
-
-  const textColor = isPrimary
-    ? '$buttonPrimaryText'
-    : variant === 'secondary'
-      ? '$buttonSecondaryText'
-      : '$buttonTagText'
-
-  const iconPropsWithColor = {
-    ...iconProps,
-    color: textColor
-  } as IconProps
+  const textConfig = {
+    children: label,
+    color: disabled ? '$disabledColor' : iconProps?.color,
+    textTransform,
+    fontWeight: '700'
+  }
   return (
-    <TamaguiButton
-      {...styles}
-      {...props}
-      disabled={disabled}
-      paddingHorizontal="$4"
-      paddingVertical="$3"
-      minHeight={40}
-      justifyContent="center"
-      alignItems="center"
-      borderRadius={isTag ? 999 : isNone ? 0 : 999}
-      opacity={disabled ? 0.5 : 1}
-      cursor={disabled ? 'not-allowed' : 'pointer'}
-      hoverStyle={
-        disabled
-          ? undefined
-          : {
-              opacity: 0.9
-            }
-      }
-      pressStyle={
-        disabled
-          ? undefined
-          : {
-              opacity: 0.8
-            }
-      }
-      focusStyle={{
-        outlineWidth: 2,
-        outlineColor: '$primaryColor',
-        outlineStyle: 'solid'
-      }}
-      aria-disabled={disabled}
-      role="button"
-    >
-      <Container
-        orientation={'row'}
-        borderColor={'none'}
-        backgroundColor={'none'}
-        alignItems="center"
-        justifyContent="center"
-        gap="$2"
-      >
-        {iconProps && iconPosition === 'left' && (
-          <Icon {...iconPropsWithColor} />
-        )}
-
-        <Text
-          color={disabled ? '$disabledColor' : textColor}
-          textTransform={isNone ? 'none' : 'uppercase'}
-          fontWeight="700"
-        >
-          {label}
-        </Text>
-
-        {iconProps && iconPosition === 'right' && (
-          <Icon {...iconPropsWithColor} />
-        )}
-      </Container>
+    <TamaguiButton {...styles} {...props} {...stylesDisabled} role="button">
+      {children ? (
+        children
+      ) : (
+        <Container {...containerConfig}>
+          {iconProps && iconPosition === 'left' && <Icon {...iconProps} />}
+          <Text {...textConfig} />
+          {iconProps && iconPosition === 'right' && <Icon {...iconProps} />}
+        </Container>
+      )}
     </TamaguiButton>
   )
 }
