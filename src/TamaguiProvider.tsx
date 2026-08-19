@@ -1,31 +1,32 @@
 import React from 'react'
+
 import {
-    TamaguiProvider as Provider,
-    type TamaguiProviderProps,
+  TamaguiProvider as Provider,
+  Theme as TamaguiTheme,
+  type TamaguiProviderProps
 } from 'tamagui'
 
 import config from './tamagui.config'
 
-type Theme = 'light' | 'dark'
+type ThemeName = 'light' | 'dark'
 
-type Props = Omit<TamaguiProviderProps, 'config'> & {
-    theme?: Theme
+export interface DesignSystemProviderProps extends Omit<
+  TamaguiProviderProps,
+  'config'
+> {
+  theme?: ThemeName
 }
 
-const TamaguiProvider: React.FC<Props> = ({
-                                              children,
-                                              theme = 'light',
-                                              ...props
-                                          }) => {
-    return (
-        <Provider
-            config={config}
-            defaultTheme={theme}
-            {...props}
-        >
-            {children}
-        </Provider>
-    )
+const TamaguiProvider: React.FC<DesignSystemProviderProps> = ({
+  children,
+  theme = 'light',
+  ...props
+}) => {
+  return (
+    <Provider config={config} {...props}>
+      <TamaguiTheme name={theme}>{children}</TamaguiTheme>
+    </Provider>
+  )
 }
 
 export default TamaguiProvider

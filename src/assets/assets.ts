@@ -1,5 +1,5 @@
 import logo from './hero.png'
 
 export const Assets = {
-    logo,
+  logo
 } as const
