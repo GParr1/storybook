@@ -17761,8 +17761,8 @@ var tamaguiConfig = createTamagui({
       // Background
       // ─────────────────────────────────────────
       background: "rgb(250, 250, 250)",
-      backgroundHover: "rgb(75, 75, 75)",
-      backgroundPress: "rgb(75, 75, 75)",
+      backgroundHover: "rgb(240, 240, 240)",
+      backgroundPress: "rgb(230, 230, 230)",
       primaryBg: "rgb(250, 250, 250)",
       secondaryBg: "rgb(235, 235, 235)",
       // ─────────────────────────────────────────
