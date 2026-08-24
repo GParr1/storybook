@@ -9,6 +9,7 @@ import { NavLink } from '../../core/NavLink'
 import { Assets } from '../../assets/assets.ts'
 
 import type { HeaderProps } from './types.ts'
+import { bottonVarians } from '../../core/layout'
 
 const Header = ({
   title = 'My App',
@@ -66,14 +67,14 @@ const Header = ({
 
         {!isMobile && (
           <Button
-            variant="primary"
+            variant={bottonVarians.Primary}
             iconProps={{ name: 'settings', size: 18 }}
           />
         )}
 
         {isMobile && (
           <Button
-            variant="none"
+            variant={bottonVarians.None}
             iconProps={{ name: menuOpen ? 'close' : 'menu', size: 18 }}
             onPress={() => setMenuOpen((open) => !open)}
           />
@@ -114,7 +115,7 @@ const Header = ({
           >
             {showLogin && (
               <Button
-                variant="primary"
+                variant={bottonVarians.Primary}
                 iconProps={{ name: 'login', size: 18 }}
                 onPress={() => {
                   setMenuOpen(false)
@@ -123,7 +124,7 @@ const Header = ({
             )}
 
             <Button
-              variant="primary"
+              variant={bottonVarians.Primary}
               iconProps={{ name: 'settings', size: 18 }}
               onPress={() => {
                 setMenuOpen(false)

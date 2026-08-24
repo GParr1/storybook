@@ -1,33 +1,32 @@
-export const FLEX_DIRECTIONS = [
-  'row',
-  'column',
-  'row-reverse',
-  'column-reverse'
-] as const
+import {
+  bottonVarians,
+  FLEX_DIRECTION,
+  FLEX_ALIGN,
+  FLEX_JUSTIFY,
+  FLEX_WRAP,
+  POSITION,
+  OVERFLOW,
+  TEXT_ALIGN,
+  DISPLAY,
+  iconPosition
+} from './layout.variants'
 
-export type FlexDirection = (typeof FLEX_DIRECTIONS)[number]
+export type ButtonVariant = (typeof bottonVarians)[keyof typeof bottonVarians]
 
-export const FLEX_ALIGNMENTS = [
-  'flex-start',
-  'center',
-  'flex-end',
-  'stretch',
-  'baseline'
-] as const
+export type IconPosition = (typeof iconPosition)[keyof typeof iconPosition]
 
-export type FlexAlignment = (typeof FLEX_ALIGNMENTS)[number]
+export type FlexDirection = (typeof FLEX_DIRECTION)[keyof typeof FLEX_DIRECTION]
 
-export const FLEX_JUSTIFICATIONS = [
-  'flex-start',
-  'center',
-  'flex-end',
-  'space-between',
-  'space-around',
-  'space-evenly'
-] as const
+export type FlexAlign = (typeof FLEX_ALIGN)[keyof typeof FLEX_ALIGN]
 
-export type FlexJustification = (typeof FLEX_JUSTIFICATIONS)[number]
+export type FlexJustify = (typeof FLEX_JUSTIFY)[keyof typeof FLEX_JUSTIFY]
 
-export const FLEX_WRAPS = ['nowrap', 'wrap', 'wrap-reverse'] as const
+export type FlexWrap = (typeof FLEX_WRAP)[keyof typeof FLEX_WRAP]
 
-export type FlexWrap = (typeof FLEX_WRAPS)[number]
+export type Position = (typeof POSITION)[keyof typeof POSITION]
+
+export type Overflow = (typeof OVERFLOW)[keyof typeof OVERFLOW]
+
+export type TextAlign = (typeof TEXT_ALIGN)[keyof typeof TEXT_ALIGN]
+
+export type Display = (typeof DISPLAY)[keyof typeof DISPLAY]

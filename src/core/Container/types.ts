@@ -1,8 +1,8 @@
-import { type YStackProps } from 'tamagui'
+import type { LayoutProps } from '../layout/layout.props.ts'
 
 export type ContainerOrientation = 'row' | 'column'
 
-export interface ContainerProps extends YStackProps {
+export interface ContainerProps extends LayoutProps {
   orientation?: ContainerOrientation
 }
 

@@ -1,11 +1,12 @@
 import type { NavLinkProps } from './types'
 import { Button } from '../Button'
+import { bottonVarians } from '../layout'
 
 const NavLink = ({ label, onPress, disabled = false }: NavLinkProps) => {
   return (
     <Button
       label={label}
-      variant={'none'}
+      variant={bottonVarians.None}
       unstyled
       disabled={disabled}
       onPress={onPress}

@@ -10,6 +10,7 @@ import { FormContext } from './FormContext.tsx'
 import { FORM_DEFAULTS, type FormErrors, type FormProps } from './types.ts'
 
 import { validateForm } from './utils.ts'
+import { bottonVarians } from '../../core/layout'
 
 const Form: React.FC<FormProps> = ({
   children,
@@ -80,7 +81,7 @@ const Form: React.FC<FormProps> = ({
 
         <Button
           label="Submit"
-          variant="primary"
+          variant={bottonVarians.Submit}
           disabled={loading}
           onPress={handleSubmit}
         />

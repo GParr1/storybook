@@ -1,15 +1,34 @@
 import type { YStackProps } from 'tamagui'
 
 import type {
-  FlexAlignment,
+  FlexAlign,
   FlexDirection,
-  FlexJustification,
-  FlexWrap
+  FlexJustify,
+  FlexWrap,
+  Position,
+  Overflow,
+  TextAlign,
+  Display
 } from './layout.types'
 
-export interface LayoutProps extends YStackProps {
+export interface LayoutProps extends Omit<
+  YStackProps,
+  | 'flexDirection'
+  | 'alignItems'
+  | 'justifyContent'
+  | 'flexWrap'
+  | 'position'
+  | 'overflow'
+  | 'textAlign'
+  | 'display'
+> {
   flexDirection?: FlexDirection
-  alignItems?: FlexAlignment
-  justifyContent?: FlexJustification
+  alignItems?: FlexAlign
+  justifyContent?: FlexJustify
   flexWrap?: FlexWrap
+
+  position?: Position
+  overflow?: Overflow
+  textAlign?: TextAlign
+  display?: Display
 }

@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Paragraph, YStack } from 'tamagui'
-
 import Accordion from './Accordion'
 
 const meta = {
@@ -32,7 +31,7 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     title: 'What is Storybook?',
-    width: 'fullScreen',
+    width: '80vw',
     defaultOpen: false,
     children: (
       <Paragraph>

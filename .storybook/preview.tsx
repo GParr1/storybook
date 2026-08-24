@@ -1,4 +1,3 @@
-import '../src/styles/material-symbols.css'
 import type { Preview } from '@storybook/react-vite'
 import TamaguiProvider from '../src/TamaguiProvider'
 

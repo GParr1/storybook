@@ -1,38 +1,31 @@
 import React from 'react'
 import { Button as TamaguiButton } from 'tamagui'
-
 import { Icon } from '../Icon'
-import type { ButtonProps } from './types'
-import { buttonStyles, type ButtonVariant } from './variants'
+import { type ButtonProps } from './types'
+import { buttonStyles } from './variants'
 import { Container, type ContainerProps } from '../Container'
 import { Text } from '../Text'
+import { bottonVarians, FLEX_ALIGN, iconPosition } from '../layout'
 
 const Button: React.FC<ButtonProps> = ({
   children,
   label,
-  variant = 'primary',
+  variant = bottonVarians.Primary,
   iconProps,
-  iconPosition = 'left',
+  iconPositionProp = iconPosition.Left,
   disabled = false,
   textTransform,
+  containerConfig,
   ...props
 }: ButtonProps) => {
-  const styles = buttonStyles[variant as ButtonVariant]
-  const stylesDisabled = disabled
-    ? {
-        disabled: disabled,
-        'aria-disabled': disabled,
-        opacity: 0.5,
-        cursor: 'not-allowed',
-        hoverStyle: undefined,
-        pressStyle: undefined
-      }
-    : {}
+  const styles = buttonStyles(variant, disabled)
 
-  const containerConfig = {
+  const containerConfigDefault = {
     orientation: 'row',
     backgroundColor: 'none',
-    alignItems: 'center'
+    gap: '$2',
+    alignItems: FLEX_ALIGN.Center,
+    ...containerConfig
   } as ContainerProps
 
   const textConfig = {
@@ -42,14 +35,14 @@ const Button: React.FC<ButtonProps> = ({
     fontWeight: '700'
   }
   return (
-    <TamaguiButton {...styles} {...props} {...stylesDisabled} role="button">
+    <TamaguiButton {...styles} {...props} role="button">
       {children ? (
         children
       ) : (
-        <Container {...containerConfig}>
-          {iconProps && iconPosition === 'left' && <Icon {...iconProps} />}
+        <Container {...containerConfigDefault}>
+          {iconProps && iconPositionProp === 'left' && <Icon {...iconProps} />}
           <Text {...textConfig} />
-          {iconProps && iconPosition === 'right' && <Icon {...iconProps} />}
+          {iconProps && iconPositionProp === 'right' && <Icon {...iconProps} />}
         </Container>
       )}
     </TamaguiButton>

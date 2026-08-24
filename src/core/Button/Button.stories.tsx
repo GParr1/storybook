@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import Button from './Button'
-import { BUTTON_VARIANTS } from './variants'
 import type { IconName } from '../Icon'
+import { bottonVarians, iconPosition } from '../layout'
 
 const icons: IconName[] = [
   'add',
@@ -32,7 +32,7 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: BUTTON_VARIANTS
+      options: Object.values(bottonVarians)
     },
 
     label: {
@@ -44,9 +44,9 @@ const meta = {
       options: [undefined, ...icons]
     },
 
-    iconPosition: {
-      control: 'radio',
-      options: ['left', 'right']
+    iconPositionProp: {
+      control: 'select',
+      options: Object.values(bottonVarians)
     },
 
     disabled: {
@@ -67,35 +67,35 @@ type Story = StoryObj<typeof meta>
 export const Primary: Story = {
   args: {
     label: 'Continue',
-    variant: 'primary'
+    variant: bottonVarians.Primary
   }
 }
 
 export const Secondary: Story = {
   args: {
     label: 'Cancel',
-    variant: 'secondary'
+    variant: bottonVarians.Secondary
   }
 }
 
 export const Tag: Story = {
   args: {
     label: 'Category',
-    variant: 'tag'
+    variant: bottonVarians.Tag
   }
 }
 
 export const None: Story = {
   args: {
     label: 'Action',
-    variant: 'none'
+    variant: bottonVarians.None
   }
 }
 
 export const Submit: Story = {
   args: {
     label: 'Submit',
-    variant: 'primary',
+    variant: bottonVarians.Submit,
     type: 'submit'
   }
 }
@@ -103,25 +103,25 @@ export const Submit: Story = {
 export const WithIcon: Story = {
   args: {
     label: 'Continue',
-    variant: 'primary',
+    variant: bottonVarians.Primary,
     iconProps: { name: 'arrow_forward', size: 18 },
-    iconPosition: 'right'
+    iconPositionProp: iconPosition.Right
   }
 }
 
 export const WithLeftIcon: Story = {
   args: {
     label: 'Save',
-    variant: 'primary',
+    variant: bottonVarians.Primary,
     iconProps: { name: 'save', size: 18 },
-    iconPosition: 'left'
+    iconPositionProp: iconPosition.Left
   }
 }
 
 export const Disabled: Story = {
   args: {
     label: 'Disabled',
-    variant: 'primary',
+    variant: bottonVarians.Primary,
     disabled: true
   }
 }
