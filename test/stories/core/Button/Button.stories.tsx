@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import Button from './Button'
-import type { IconName } from '../Icon'
-import { bottonVarians, iconPosition } from '../layout'
+import Button from '../../../../src/core/Button/Button'
+import type { IconName } from '../../../../src/core/Icon'
+import { bottonVarians, iconPosition } from '../../../../src/core/layout'
 
 const icons: IconName[] = [
   'add',

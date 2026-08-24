@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { InputText } from '../../core/InputText'
-import { InputSelect } from '../../core/InputSelect'
-import { InputDate } from '../../core/InputDate'
+import { InputText } from '../../../../src/core/InputText'
+import { InputSelect } from '../../../../src/core/InputSelect'
+import { InputDate } from '../../../../src/core/InputDate'
 
-import Form from './Form.tsx'
+import Form from '../../../../src/organisms/Form/Form.tsx'
 
 const countries = [
   {

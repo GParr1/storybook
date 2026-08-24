@@ -3,8 +3,8 @@ import { tamaguiPlugin } from '@tamagui/vite-plugin'
 
 const config: StorybookConfig = {
   stories: [
-    '../src/**/*.mdx',
-    '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../test/**/*.mdx',
+    '../test/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
 
   addons: [

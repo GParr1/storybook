@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Paragraph, YStack } from 'tamagui'
-import Accordion from './Accordion'
+import Accordion from '../../../../src/core/Accordion/Accordion'
 
 const meta = {
   title: 'Core/Accordion',

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { Image } from './Image'
-import { Assets } from '../../assets/assets'
+import { Image } from '../../../../src/core/Image/Image'
+import { Assets } from '../../../../src/assets/assets'
 
 const meta = {
   title: 'Core/Image',

@@ -28,6 +28,8 @@ export default defineConfig({
   },
 
   build: {
+    emptyOutDir: false,
+
     lib: {
       entry: path.resolve(
           import.meta.dirname,

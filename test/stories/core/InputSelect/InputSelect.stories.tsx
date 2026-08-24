@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import InputSelect from './InputSelect'
+import InputSelect from '../../../../src/core/InputSelect/InputSelect'
 
 const options = [
   { label: 'Italy', value: 'it' },

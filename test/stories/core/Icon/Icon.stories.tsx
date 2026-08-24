@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import Icon from './Icon'
-import { ICONS } from './icons'
-import type { IconName } from './types'
+import Icon from '../../../../src/core/Icon/Icon'
+import { ICONS } from '../../../../src/core/Icon/icons'
+import type { IconName } from '../../../../src/core/Icon/types'
 import React from 'react'
 
 const icons = Object.keys(ICONS) as IconName[]

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import InputDate from './InputDate'
+import InputDate from '../../../../src/core/InputDate/InputDate'
 
 const meta = {
   title: 'Core/InputDate',
