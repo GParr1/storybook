@@ -10,6 +10,8 @@ import { InputSelect } from './core/InputSelect'
 import { InputDate } from './core/InputDate'
 import { NavLink } from './core/NavLink'
 import { Text } from './core/Text'
+import { TamaguiProvider } from './TamaguiProvider'
+import { config } from './tamagui.config'
 
 import { default as Form } from './organisms/Form/Form'
 import { default as Header } from './organisms/Header/Header'
@@ -26,5 +28,7 @@ export {
   NavLink,
   Text,
   Form,
+  TamaguiProvider,
+  config,
   Header
 }
