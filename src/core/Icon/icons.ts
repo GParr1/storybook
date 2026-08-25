@@ -120,7 +120,7 @@ import {
   X,
   XCircle,
   Zap
-} from '@tamagui/lucide-icons'
+} from '@tamagui/lucide-icons-2'
 
 export const ICONS = {
   // Navigation

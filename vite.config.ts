@@ -28,7 +28,7 @@ export default defineConfig({
   },
 
   build: {
-    emptyOutDir: false,
+    emptyOutDir: true,
 
     lib: {
       entry: path.resolve(
@@ -47,7 +47,9 @@ export default defineConfig({
         'react-dom',
         'react-native',
         'react-native-web',
+        'react-native-svg',
         'tamagui',
+        '@tamagui/lucide-icons-2',
       ],
     },
   },

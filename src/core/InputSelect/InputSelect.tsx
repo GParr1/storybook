@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Adapt, Label, Paragraph, Select, Sheet } from 'tamagui'
 
-import { Check, ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
+import { Check, ChevronDown, ChevronUp } from '@tamagui/lucide-icons-2'
 
 import { Container } from '../Container'
 import { useFormContext } from '../../organisms/Form/FormContext'
