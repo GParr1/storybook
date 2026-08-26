@@ -72,4 +72,7 @@ export default defineConfig([
   },
 ])
 
+
+npm version patch
+git push origin tag
 ```
