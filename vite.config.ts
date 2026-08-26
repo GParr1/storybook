@@ -28,7 +28,7 @@ export default defineConfig({
   },
 
   build: {
-    emptyOutDir: true,
+    emptyOutDir: false,
 
     lib: {
       entry: path.resolve(
