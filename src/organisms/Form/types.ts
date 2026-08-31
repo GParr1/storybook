@@ -1,5 +1,6 @@
 import type React from 'react'
 import type { ContainerProps } from '../../core/Container'
+import type {ButtonProps} from "../../core/Button";
 
 export type FormValues = Record<string, string>
 
@@ -22,7 +23,7 @@ export interface FormProps extends ContainerProps {
   error?: string
 
   fields?: FormFields
-
+  buttonProps?: ButtonProps
   onSubmit?: (values: FormValues) => void
 }
 
@@ -34,5 +35,6 @@ export const FORM_DEFAULTS = {
   borderWidth: 1,
   borderColor: '$primaryColor',
   borderRadius: '$4',
-  backgroundColor: '$background'
+  backgroundColor: '$background',
+  render:"form"
 } satisfies Partial<FormProps>

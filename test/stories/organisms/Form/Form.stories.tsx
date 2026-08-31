@@ -87,7 +87,7 @@ const meta = {
 
   args: {
     gap: '$4',
-
+    buttonProps: {label:"Submit"},
     fields: defaultFields
   }
 } satisfies Meta<typeof Form>

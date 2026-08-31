@@ -1,16 +1,11 @@
 import React from 'react'
-
-import { Paragraph, Spinner } from 'tamagui'
-
+import { Spinner } from 'tamagui'
 import { Container } from '../../core/Container'
 import { Button } from '../../core/Button'
-
 import { FormContext } from './FormContext.tsx'
-
 import { FORM_DEFAULTS, type FormErrors, type FormProps } from './types.ts'
-
 import { validateForm } from './utils.ts'
-import { bottonVarians } from '../../core/layout'
+import {Text} from "../../core/Text";
 
 const Form: React.FC<FormProps> = ({
   children,
@@ -18,6 +13,7 @@ const Form: React.FC<FormProps> = ({
   error,
   fields = {},
   onSubmit,
+  buttonProps,
   ...props
 }) => {
   const [values, setValues] = React.useState<Record<string, string>>({})
@@ -30,8 +26,6 @@ const Form: React.FC<FormProps> = ({
       [name]: value
     }))
 
-    // Rimuove l'errore del campo
-    // quando l'utente lo modifica.
     setErrors((current) => {
       if (!current[name]) {
         return current
@@ -49,13 +43,10 @@ const Form: React.FC<FormProps> = ({
 
   const handleSubmit = React.useCallback(() => {
     const validationErrors = validateForm(values, fields)
-
     setErrors(validationErrors)
-
     if (Object.keys(validationErrors).length > 0) {
       return
     }
-
     onSubmit?.(values)
   }, [values, fields, onSubmit])
 
@@ -71,20 +62,13 @@ const Form: React.FC<FormProps> = ({
   return (
     <FormContext.Provider value={contextValue}>
       <Container {...FORM_DEFAULTS} {...props} opacity={loading ? 0.7 : 1}>
-        {error && (
-          <Paragraph color="$errorColor" role="alert">
-            {error}
-          </Paragraph>
-        )}
-
         {children}
-
-        <Button
-          label="Submit"
-          variant={bottonVarians.Submit}
-          disabled={loading}
-          onPress={handleSubmit}
-        />
+        {error && (
+            <Text variant={'small'} color="$errorColor" render="alert">
+              {error}
+            </Text>
+        )}
+        {!loading && <Button {...buttonProps} onPress={handleSubmit}/>}
 
         {loading && (
           <Container alignItems="center" justifyContent="center" padding="$3">

@@ -1,8 +1,10 @@
-/// <reference types="vitest/config" />
-
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 export default defineConfig({
   plugins: [
@@ -32,8 +34,8 @@ export default defineConfig({
 
     lib: {
       entry: path.resolve(
-          import.meta.dirname,
-          'src/index.ts',
+        __dirname,
+        'src/index.ts',
       ),
 
       formats: ['es'],
@@ -41,9 +43,11 @@ export default defineConfig({
       fileName: 'index',
     },
 
-    rolldownOptions: {
+    rollupOptions: {
       external: [
         'react',
+        'react/jsx-runtime',
+        'react/jsx-dev-runtime',
         'react-dom',
         'react-native',
         'react-native-web',
@@ -53,6 +57,4 @@ export default defineConfig({
       ],
     },
   },
-
-  test: {},
 })

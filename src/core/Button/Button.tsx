@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button as TamaguiButton } from 'tamagui'
-import { Icon } from '../Icon'
+import {Icon} from '../Icon'
 import { type ButtonProps } from './types'
 import { buttonStyles } from './variants'
 import { Container, type ContainerProps } from '../Container'
@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   ...props
 }: ButtonProps) => {
   const styles = buttonStyles(variant, disabled)
-
+  console.log(styles.color)
   const containerConfigDefault = {
     orientation: 'row',
     backgroundColor: 'none',
@@ -27,22 +27,23 @@ const Button: React.FC<ButtonProps> = ({
     alignItems: FLEX_ALIGN.Center,
     ...containerConfig
   } as ContainerProps
-
+  const color = styles.color as string
   const textConfig = {
     children: label,
-    color: disabled ? '$disabledColor' : iconProps?.color,
+    color,
     textTransform,
     fontWeight: '700'
   }
+
   return (
     <TamaguiButton {...styles} {...props} role="button">
       {children ? (
         children
       ) : (
         <Container {...containerConfigDefault}>
-          {iconProps && iconPositionProp === 'left' && <Icon {...iconProps} />}
-          <Text {...textConfig} />
-          {iconProps && iconPositionProp === 'right' && <Icon {...iconProps} />}
+          {iconProps && iconPositionProp === 'left' && <Icon color={color} {...iconProps}/>}
+          {label && <Text {...textConfig} />}
+          {iconProps && iconPositionProp === 'right' && <Icon color={color} {...iconProps} />}
         </Container>
       )}
     </TamaguiButton>
