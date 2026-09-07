@@ -46,7 +46,9 @@ export const BUTTON_STYLE = {
   none: {
     ...BUTTON_STYLE_DEFAULT,
     backgroundColor: 'transparent',
-    borderColor: '$primaryText',
+    hoverStyle: {},
+    focusStyle: {},
+    //borderColor: '$primaryText',
     borderWidth: 0,
     borderRadius: 0
   },

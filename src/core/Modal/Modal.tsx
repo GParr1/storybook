@@ -12,6 +12,7 @@ import type {
 import { Container } from '../Container'
 import { Text } from '../Text'
 import { Button } from '../Button'
+import {Separator} from "../Separetor";
 
 const ModalHeader = ({ children }: ModalHeaderProps) => {
     return (
@@ -121,17 +122,19 @@ const Modal = ({
                                 {showClose && (
                                     <Dialog.Close asChild>
                                         <Button
-                                            size="$3"
-                                            circular
-                                            chromeless
+                                            variant={'none'}
                                             aria-label="Close"
+                                            iconProps={{
+                                                name: 'close',
+                                                size: 16
+                                            }}
                                         >
-                                            <X size={20} />
                                         </Button>
                                     </Dialog.Close>
                                 )}
                             </ModalHeader>
                         )}
+                        <Separator/>
 
                         {children}
                     </Container>

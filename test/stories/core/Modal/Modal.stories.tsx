@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { Modal } from './Modal'
-import { Button } from '../Button'
-import { Text } from '../Text'
-import { Container } from '../Container'
+import { Modal } from '../../../../src/core/Modal'
+import { Button } from '../../../../src/core/Button'
+import { Text } from '../../../../src/core/Text'
+import { Container } from '../../../../src/core/Container'
 
 const meta = {
     title: 'Core/Modal',
@@ -24,9 +24,9 @@ export const Default: Story = {
 
         return (
             <Container
-                orientation="column"
-                alignItems="center"
-                gap="$4"
+                orientation={"column"}
+                alignItems={"center"}
+                gap={"$4"}
             >
                 <Button onPress={() => setOpen(true)}>
                     Apri modale
@@ -36,7 +36,6 @@ export const Default: Story = {
                     open={open}
                     onOpenChange={setOpen}
                     title="Elimina partita"
-                    description="Sei sicuro di voler eliminare questa partita?"
                 >
                     <Modal.Body>
                         <Text>

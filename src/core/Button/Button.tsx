@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   ...props
 }: ButtonProps) => {
   const styles = buttonStyles(variant, disabled)
-  console.log(styles.color)
+
   const containerConfigDefault = {
     orientation: 'row',
     backgroundColor: 'none',
