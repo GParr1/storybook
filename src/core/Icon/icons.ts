@@ -119,8 +119,9 @@ import {
   Wrench,
   X,
   XCircle,
-  Zap
+  Zap, Facebook
 } from '@tamagui/lucide-icons-2'
+import {GoogleIcon} from "./social/GoogleIcon.tsx";
 
 export const ICONS = {
   // Navigation
@@ -172,6 +173,9 @@ export const ICONS = {
   person: User,
   group: User,
   groups: Users,
+  //social
+  facebook: Facebook,
+  google: GoogleIcon,
 
   // Media
   play_arrow: Play,
