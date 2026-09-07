@@ -1,7 +1,5 @@
 import React from 'react'
 import { Dialog } from 'tamagui'
-import { X } from '@tamagui/lucide-icons-2'
-
 import type {
     ModalProps,
     ModalHeaderProps,
